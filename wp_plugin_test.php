@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin Name: Wordpress Plugin Test
 Plugin URI:  http://URI_Of_Page_Describing_Plugin_and_Updates
@@ -11,3 +11,15 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Domain Path: /languages
 Text Domain: my-toolset
 */
+
+function plugin_test_shortcode()
+{
+	return "plugin test";
+}
+
+function plugin_test_register_shortcode()
+{
+	add_shortcode('plugin_test', 'plugin_test_shortcode');
+}
+
+add_action('init', 'plugin_test_register_shortcode');
