@@ -12,26 +12,17 @@ Domain Path: /languages
 Text Domain: my-toolset
 */
 
+function load_scripts_and_styles() {
+	wp_enqueue_script('plugin-test-google-api', "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcp4mJQHbpnxU-pfWNoE4AWGYvX2Wv2qU");
+    wp_enqueue_script('plugin-test-google-map', plugins_url('js/google_map.js', __FILE__));
+    wp_enqueue_style('plugin-test-google-map-style', plugins_url('css/style.css', __FILE__));
+}
+
+add_action( 'wp_enqueue_scripts', 'load_scripts_and_styles' );
+
 function display_map_shortcode()
 {
-	return "<style type=\"text/css\">
-      html, body, #map-canvas { width: 100%; height: 500px; margin: 0; padding: 0;}
-    </style>
-    <script type=\"text/javascript\"
-      src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyCcp4mJQHbpnxU-pfWNoE4AWGYvX2Wv2qU\">
-    </script>
-    <script type=\"text/javascript\">
-      function initialize() {
-        var mapOptions = {
-          center: { lat: -34.397, lng: 150.644},
-          zoom: 8
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-    <div id=\"map-canvas\"></div>";
+	return "<div id=\"map-canvas\"></div>";
 }
 
 function display_map_register_shortcode()
